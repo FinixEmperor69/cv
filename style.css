@@ -270,11 +270,10 @@ section{
         margin: 0;
     }
     .main-container button{
-        display: block;
         margin: 0 auto;
-        margin-top: 30px;
+        margin-top: 20px;
         text-decoration: none; /* Remove underline */
-        color: #ffffffff; /* Set text color */
+        color: rgb(211,3,3); /* Set text color */
         background: rgb(211,3,3); /* Optional: Add button-like background *
     }
         
