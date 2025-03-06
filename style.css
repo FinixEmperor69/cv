@@ -258,13 +258,12 @@ section{
 
 @media (max-width:440px) {
     .main-container .image{
-        margin-top: -25px;
         width: 50%;
         height: 25%;
     }
 
     .main-container .content{
-        margin-top: -25px;
+        margin-top: -50px;
         width: 90%;
     }
 
@@ -272,8 +271,7 @@ section{
         position: relative;
         display: block;
         margin: auto;
-        margin-top: 25px;
-        width: 100%;
+        margin-top: 50px;
     }
 
     .center {
