@@ -273,8 +273,6 @@ section{
         margin: 0 auto;
         margin-top: 20px;
         text-decoration: none; /* Remove underline */
-        color: rgb(211,3,3); /* Set text color */
-        background: rgb(211,3,3); /* Optional: Add button-like background *
     }
         
         /* Remove underline on hover/focus */
