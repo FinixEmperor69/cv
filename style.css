@@ -258,7 +258,7 @@ section{
 
 @media (max-width:440px) {
     .main-container .image{
-        width: 50%;
+        width: 60%;
         height: 20%;
     }
 
@@ -268,8 +268,17 @@ section{
 
     .main-container button{
         margin-top: 15px;
-        justify-content: center;
     }
+
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
 }
 
 
