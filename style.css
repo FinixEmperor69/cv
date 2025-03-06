@@ -268,9 +268,12 @@ section{
         width: 90%;
     }
     .main-container button{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         display: block;
         margin-top: 15px;
-        margin-right: auto;
         
     }
 
