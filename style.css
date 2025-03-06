@@ -273,7 +273,20 @@ section{
         display: block;
         margin: 0 auto;
         margin-top: 30px;
+        text-decoration: none; /* Remove underline */
+        color: #ffffffff; /* Set text color */
+        background: #f0f0f0; /* Optional: Add button-like background */
+        padding: 10px 20px; /* Optional: Add padding for button styling */
+        border-radius: 5px; /* Optional: Rounded corners */
+        display: inline-block; /* Allows padding to work */
     }
+        
+        /* Remove underline on hover/focus */
+    .button-link:hover,
+    .button-link:focus,
+    .button-link:active {
+          text-decoration: none;
+        }
 
    
 
