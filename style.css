@@ -269,6 +269,9 @@ section{
     }
 
     .main-container button{
+        position: relative;
+        display: block;
+        margin: auto;
         margin-top: 15px;
         width: 100%;
     }
