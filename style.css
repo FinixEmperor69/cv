@@ -270,8 +270,10 @@ section{
     .main-container button{
         display: block;
         margin: 0 auto;
-        margin-top: 20px;
-        text-decoration: none;
+        margin-top: auto;
+        text-decoration: none; 
+        border: none;
+        outline: none;
         
     }
 
