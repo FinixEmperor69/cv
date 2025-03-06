@@ -260,7 +260,7 @@ section{
 
 @media (max-width:440px) {
     .main-container .image{
-        margin-top: -15px;
+        margin-top: -20px;
         width: 50%;
         height: 25%;
     }
@@ -272,7 +272,7 @@ section{
     .main-container{
         display: flex;
         flex-direction: column-reverse;
-        margin-top: -15px;
+        margin-top: -20px;
     }
 
     .main-container button{
