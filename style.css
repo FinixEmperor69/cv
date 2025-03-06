@@ -259,7 +259,7 @@ section{
 @media (max-width:440px) {
     .main-container .image{
         width: 70%;
-        height: 50%;
+        height: 40%;
     }
 
     .main-container .content{
