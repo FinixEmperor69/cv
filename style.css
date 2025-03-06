@@ -260,13 +260,11 @@ section{
 
 @media (max-width:440px) {
     .main-container .image{
-        margin-top: -50px;
         width: 50%;
         height: 25%;
     }
 
     .main-container .content{
-        margin-top: -40px;
         width: 90%;
     }
     .main-container button{
