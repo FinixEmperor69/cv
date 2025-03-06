@@ -270,11 +270,7 @@ section{
     .main-container button{
         display: block;
         margin: 0 auto;
-        margin-top: auto;
-        text-decoration: none; 
-        border: none;
-        outline: none;
-        
+        margin-top: 40px;
     }
 
    
