@@ -260,14 +260,14 @@ section{
 
 @media (max-width:440px) {
     .main-container .image{
-        margin: auto;
+        margin: 0;
         width: 50%;
         height: 25%;
     }
 
     .main-container .content{
         width: 90%;
-        margin: auto;
+        margin: 0;
     }
     .main-container button{
         display: block;
@@ -275,10 +275,7 @@ section{
         margin-top: 30px;
         text-decoration: none; /* Remove underline */
         color: #ffffffff; /* Set text color */
-        background: #f0f0f0; /* Optional: Add button-like background */
-        padding: 10px 20px; /* Optional: Add padding for button styling */
-        border-radius: 5px; /* Optional: Rounded corners */
-        display: inline-block; /* Allows padding to work */
+        background: rgb(211,3,3); /* Optional: Add button-like background *
     }
         
         /* Remove underline on hover/focus */
