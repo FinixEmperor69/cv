@@ -251,7 +251,7 @@ section{
     .main-container .image{
         z-index: -1;
         width: 50%;
-        height: 15%;
+        height: 25%;
     }
 }
 
@@ -259,7 +259,7 @@ section{
 @media (max-width:440px) {
     .main-container .image{
         width: 50%;
-        height: 15%;
+        height: 25%;
     }
 
     .main-container .content{
