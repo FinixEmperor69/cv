@@ -251,19 +251,19 @@ section{
     .main-container .image{
         z-index: -1;
         width: 50%;
-        height: 30%;
+        height: 50%;
     }
 }
 
 
 @media (max-width:440px) {
     .main-container .image{
-        width: 70%;
-        height: 30%;
+        width: 50%;
+        height: 50%;
     }
 
     .main-container .content{
-        width: 100%;
+        width: 80%;
     }
 
     .main-container button{
