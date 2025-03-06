@@ -251,23 +251,24 @@ section{
     .main-container .image{
         z-index: -1;
         width: 60%;
-        height: 30%;
+        height: 20%;
     }
 }
 
 
 @media (max-width:440px) {
     .main-container .image{
-        width: 60%;
-        height: 30%;
+        width: 50%;
+        height: 20%;
     }
 
     .main-container .content{
-        width: 90%;
+        width: 80%;
     }
 
     .main-container button{
         margin-top: 15px;
+        justify-content: center;
     }
 }
 
