@@ -268,7 +268,9 @@ section{
         width: 90%;
     }
     .main-container button{
+        display: block;
         margin-top: 15px;
+        margin-right: auto;
         
     }
 
