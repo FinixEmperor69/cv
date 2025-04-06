@@ -9,28 +9,44 @@
     <title>Prabod Website</title>
 </head>
 <body>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RZ72G3C40"></script>
-<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.2/src/ua-parser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.2/src/ua-parser.min.js"></script>
 <script>
+// Parse device info
 const parser = new UAParser();
-const device = parser.getResult();
+const result = parser.getResult();
 
+// Airtable configuration (REPLACE WITH YOUR VALUES)
+const AIRTABLE_BASE_ID = 'appb2QysyXZP0hUIK'; // Your Base ID
+const AIRTABLE_TABLE_NAME = 'Devices'; // Your Table Name
+const AIRTABLE_API_KEY = 'patYourAPIKey'; // Get this from Airtable Account
+
+// Prepare data
 const deviceData = {
-  timestamp: new Date().toISOString(),
-  model: device.device.model || "Desktop",
-  type: device.device.type || "Desktop",
-  browser: device.browser.name,
-  os: device.os.name,
-  screen: `${screen.width}x${screen.height}`,
-  userAgent: navigator.userAgent
+  fields: {
+    "Timestamp": new Date().toISOString(),
+    "Device Model": result.device.model || "Desktop",
+    "Device Type": result.device.type || "Desktop",
+    "Browser": `${result.browser.name} ${result.browser.version}`,
+    "OS": `${result.os.name} ${result.os.version}`,
+    "Screen Size": `${screen.width}x${screen.height}`,
+    "User Agent": navigator.userAgent
+  }
 };
 
 // Send to Airtable
-fetch('https://api.airtable.com/v0/appb2QysyXZP0hUIK/Devices', {
+fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
   method: 'POST',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({fields: deviceData})
-});
+  headers: {
+    'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(deviceData)
+})
+.then(response => {
+  if (!response.ok) throw new Error('Failed to log device');
+  console.log('Device data logged to Airtable');
+})
+.catch(error => console.error('Error:', error));
 </script>
 
     <nav>
