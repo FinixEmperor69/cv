@@ -9,20 +9,13 @@
     <title>Prabod Website</title>
 </head>
 <body>
-    <script>
-  const userData = {
-    userAgent: navigator.userAgent,
-    platform: navigator.platform,
-    language: navigator.language
-  };
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RZ72G3C40"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  fetch("https://script.google.com/macros/s/AKfycbxhNxWvJxSlKSAJKBxFGfhrFC2y9Hvgmmgatduz861rErEVldiYrQEzNT4rmlEaFEMl/exec", { // Replace with your Google Script URL
-    method: "POST",
-    body: JSON.stringify(userData),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+  gtag('config', 'G-9RZ72G3C40');
 </script>
 
     <nav>
