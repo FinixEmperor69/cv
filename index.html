@@ -9,6 +9,22 @@
     <title>Prabod Website</title>
 </head>
 <body>
+    <script>
+  const userData = {
+    userAgent: navigator.userAgent,
+    platform: navigator.platform,
+    language: navigator.language
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbxhNxWvJxSlKSAJKBxFGfhrFC2y9Hvgmmgatduz861rErEVldiYrQEzNT4rmlEaFEMl/exec", { // Replace with your Google Script URL
+    method: "POST",
+    body: JSON.stringify(userData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+</script>
+
     <nav>
         <div class="nav-container">
             <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
