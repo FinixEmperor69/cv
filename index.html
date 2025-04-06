@@ -10,12 +10,27 @@
 </head>
 <body>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RZ72G3C40"></script>
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.2/src/ua-parser.min.js"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const parser = new UAParser();
+const device = parser.getResult();
 
-  gtag('config', 'G-9RZ72G3C40');
+const deviceData = {
+  timestamp: new Date().toISOString(),
+  model: device.device.model || "Desktop",
+  type: device.device.type || "Desktop",
+  browser: device.browser.name,
+  os: device.os.name,
+  screen: `${screen.width}x${screen.height}`,
+  userAgent: navigator.userAgent
+};
+
+// Send to Airtable
+fetch('https://api.airtable.com/v0/appb2QysyXZP0hUIK/Devices', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({fields: deviceData})
+});
 </script>
 
     <nav>
