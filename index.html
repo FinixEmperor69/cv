@@ -15,12 +15,12 @@
 const parser = new UAParser();
 const result = parser.getResult();
 
-// Airtable configuration (REPLACE WITH YOUR VALUES)
-const AIRTABLE_BASE_ID = 'appb2QysyXZP0hUIK'; // Your Base ID
-const AIRTABLE_TABLE_NAME = 'Devices'; // Your Table Name
-const AIRTABLE_API_KEY = 'patYourAPIKey'; // Get this from Airtable Account
+// Airtable configuration (YOUR DETAILS)
+const AIRTABLE_BASE_ID = 'appb2QysyXZP0hUIK'; // Replace with your Base ID
+const AIRTABLE_TABLE_NAME = 'Devices'; // Replace with your Table Name
+const AIRTABLE_API_KEY = 'pattsfPKu0HdXqV09.314c4f1b5bf7ef87f4d10be6371045536b265e0018eaa53c8f4357480ce095ad'; // Your API Key
 
-// Prepare data
+// Prepare data for Airtable
 const deviceData = {
   fields: {
     "Timestamp": new Date().toISOString(),
@@ -33,7 +33,7 @@ const deviceData = {
   }
 };
 
-// Send to Airtable
+// Send data to Airtable
 fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
   method: 'POST',
   headers: {
@@ -44,9 +44,9 @@ fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, 
 })
 .then(response => {
   if (!response.ok) throw new Error('Failed to log device');
-  console.log('Device data logged to Airtable');
+  console.log('✅ Device data logged to Airtable');
 })
-.catch(error => console.error('Error:', error));
+.catch(error => console.error('❌ Error:', error));
 </script>
 
     <nav>
