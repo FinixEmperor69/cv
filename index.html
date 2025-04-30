@@ -15,13 +15,22 @@
       --main-glow-hover: 0 0 30px var(--main-color);
     }
 
+   body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://raw.githubusercontent.com/FinixEmperor69/cv/refs/heads/main/images/main.webp') center center / cover no-repeat;
+      z-index: -1;
+    }
+
     *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      background: url('https://raw.githubusercontent.com/FinixEmperor69/cv/refs/heads/main/images/main.webp')
+      
     }
-
     html, body {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
