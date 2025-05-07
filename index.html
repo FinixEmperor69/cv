@@ -13,11 +13,13 @@
       --main-glow: 0 0 15px var(--main-color);
       --main-glow-hover: 0 0 30px var(--main-color);
     }
+
     @keyframes imagePulse {
-      0% { transform: scale(0.9); box-shadow: none; opacity: 1; }
-      50% { transform: scale(1.05); box-shadow: 0 0 160px var(--main-color); opacity: 1; }
-      100% { transform: scale(1); box-shadow: 0 0 140px var(--main-color); opacity: 1; }
+      0% { transform: scale(0.9); box-shadow: none; }
+      50% { transform: scale(1.05); box-shadow: 0 0 160px var(--main-color); }
+      100% { transform: scale(1); box-shadow: 0 0 140px var(--main-color); }
     }
+
     @keyframes iconJiggle {
       0% { transform: translateY(0) rotate(0deg); }
       10% { transform: translateY(0) rotate(1deg) scale(1.1); }
@@ -28,6 +30,7 @@
       60% { transform: translateY(0) rotate(-1deg) scale(1); }
       100% { transform: translateY(0) rotate(0deg) scale(1); }
     }
+
     @keyframes buttonGlitch {
       0% { transform: scale(1); box-shadow: var(--main-glow); }
       10% { transform: scale(1.1) skew(1deg); box-shadow: var(--main-glow-hover); }
@@ -37,32 +40,38 @@
       100% { transform: scale(1); box-shadow: var(--main-glow); }
     }
 
-    /* Glitch Animation for PRABOD Text */
-    .glitch-glow {
-      display: inline-block;
-      color: red;
-      position: relative;
-      animation: glitchBase 1.7s infinite steps(1);
-    }
-    .glitch-glow::before,
-    .glitch-glow::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      opacity: 0.8;
-      clip: rect(0, 900px, 0, 0);
-    }
-    .glitch-glow::before {
-      color: cyan;
-      animation: glitchTop 2.3s infinite linear alternate-reverse;
-      z-index: -1;
-    }
-    .glitch-glow::after {
-      color: magenta;
-      animation: glitchBottom 2.3s infinite linear alternate-reverse;
-      z-index: -2;
+    @keyframes glitchGlow {
+      0%, 100% {
+        text-shadow:
+          2px 0 red,
+          -2px 0 cyan,
+          0 0 5px #fff;
+        transform: scale(1);
+      }
+      20% {
+        text-shadow:
+          -2px -1px lime,
+          2px 1px magenta;
+        transform: scale(1.02);
+      }
+      40% {
+        text-shadow:
+          3px 1px red,
+          -1px -1px cyan;
+        transform: scale(1.01);
+      }
+      60% {
+        text-shadow:
+          -2px 2px #ff00ff,
+          2px -2px #00ffff;
+        transform: scale(1.03);
+      }
+      80% {
+        text-shadow:
+          1px -1px yellow,
+          -1px 1px blue;
+        transform: scale(1.01);
+      }
     }
 
     html, body {
@@ -73,16 +82,12 @@
       color: #fff;
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth;
     }
 
-    /* Hide Scrollbar */
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    body {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     canvas#galaxy {
@@ -206,8 +211,18 @@
       flex-shrink: 0;
       order: 2;
       position: relative;
-      animation: imagePulse 2.5s ease-in-out infinite;
+      animation: imagePulse 2.5s ease forwards;
+      animation-delay: 0.8s;
       transition: all 0.3s ease !important;
+    }
+
+    #infernoCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      z-index: 0;
     }
 
     .image-wrapper img {
@@ -215,7 +230,6 @@
       height: 100%;
       object-fit: cover;
       position: relative;
-      overflow: hidden;
       z-index: 1;
       transition: opacity 0.8s ease-in-out;
       opacity: 100%;
@@ -365,6 +379,10 @@
       z-index: -2;
     }
 
+    .glitch-glow {
+      animation: glitchGlow 2.5s infinite ease-in-out;
+    }
+
     @keyframes glitchBase {
       0% { transform: scale(1); }
       25% { transform: skewX(5deg) scale(1.03); }
@@ -455,7 +473,7 @@
 </div>
 <section class="hero">
   <div class="text-area">
-    <div class="main-title2">Hey I'm <span class="highlight glitch-glow" data-text="PRABOD">PRABOD</span></div>
+    <div class="main-title2">Hey I'm <span class="highlight glitch-glow">PRABOD</span></div>
     <div class="main-title">I'm a&nbsp;&nbsp;<span class="highlight crazy-glitch" data-text="DESIGNER">DESIGNER</span></div>
     <p class="description">I'm Prabod Saranga — I'm a passionate web designer focused on crafting clean, modern, and responsive websites. I specialize in photo editing — enhancing visuals with precision and emotion — and creative video editing.</p>
     <div class="social-icons">
@@ -469,13 +487,15 @@
     </a>
   </div>
   <div class="image-wrapper">
-    <img src="images/main.webp" />
     <canvas id="infernoCanvas"></canvas>
+    <img src="images/main.webp" />
   </div>
 </section>
+
 <script>
   const galaxyCanvas = document.getElementById('galaxy'), ctxGalaxy = galaxyCanvas.getContext('2d');
   let stars = [], w, h;
+
   function resizeGalaxy() {
     w = galaxyCanvas.width = innerWidth;
     h = galaxyCanvas.height = innerHeight;
@@ -486,6 +506,7 @@
       z: Math.random() * w
     }));
   }
+
   function drawGalaxy() {
     ctxGalaxy.fillStyle = "rgba(10, 0, 25, 0.3)";
     ctxGalaxy.fillRect(0, 0, w, h);
@@ -505,26 +526,32 @@
     }
     requestAnimationFrame(drawGalaxy);
   }
+
   setTimeout(() => {
     document.querySelector('.cv-button').classList.add('visible');
   }, 3400);
+
   // Inferno Animation
   const infernoCanvas = document.getElementById('infernoCanvas');
   const ctxInferno = infernoCanvas.getContext('2d');
   const imgWrapper = document.querySelector('.image-wrapper');
+
   function resizeInferno() {
     const size = imgWrapper.offsetWidth;
     infernoCanvas.width = size;
     infernoCanvas.height = size;
     return size;
   }
+
   let baseSize = resizeInferno();
   let cx = baseSize / 2;
   let cy = baseSize / 2;
   let rings = [], sparks = [], pulses = [], animate = true, frame = 0;
+
   function spawnRing() {
     rings.push({ radius: 0, speed: Math.random() * 1.2 + 0.4, alpha: 0.7 });
   }
+
   function spawnSpark() {
     const angle = Math.random() * 2 * Math.PI;
     sparks.push({
@@ -535,6 +562,7 @@
       alpha: 1
     });
   }
+
   function spawnPulse() {
     pulses.push({
       x: Math.random() * baseSize,
@@ -544,6 +572,7 @@
       alpha: 0.5 + Math.random() * 0.3
     });
   }
+
   function drawInferno() {
     ctxInferno.clearRect(0, 0, baseSize, baseSize);
     const g = ctxInferno.createRadialGradient(cx, cy, 0, cx, cy, baseSize / 2);
@@ -551,6 +580,7 @@
     g.addColorStop(1, `rgba(0,0,0,0)`);
     ctxInferno.fillStyle = g;
     ctxInferno.fillRect(0, 0, baseSize, baseSize);
+
     for (let i = pulses.length - 1; i >= 0; i--) {
       const p = pulses[i];
       ctxInferno.beginPath();
@@ -561,6 +591,7 @@
       p.alpha *= 0.97;
       if (p.radius > p.max || p.alpha < 0.01) pulses.splice(i, 1);
     }
+
     for (let i = rings.length - 1; i >= 0; i--) {
       const r = rings[i];
       ctxInferno.beginPath();
@@ -572,6 +603,7 @@
       r.alpha -= 0.004;
       if (r.alpha <= 0) rings.splice(i, 1);
     }
+
     for (let i = sparks.length - 1; i >= 0; i--) {
       const s = sparks[i];
       ctxInferno.beginPath();
@@ -583,38 +615,49 @@
       s.alpha -= 0.012;
       if (s.alpha <= 0) sparks.splice(i, 1);
     }
+
     if (frame % 14 === 0) spawnRing();
     if (frame % 4 === 0) spawnSpark();
     if (frame % 20 === 0) spawnPulse();
+
     frame++;
     if (animate) requestAnimationFrame(drawInferno);
   }
+
   window.addEventListener('resize', () => {
     resizeGalaxy();
     baseSize = resizeInferno();
     cx = baseSize / 2;
     cy = baseSize / 2;
-    if (window.innerWidth > 768) {
-      const nav = document.getElementById("mobileNav");
+
+    // Auto close mobile nav on desktop
+    const nav = document.getElementById("mobileNav");
+    const icon = document.getElementById("menuIcon");
+    if (window.innerWidth > 768 && nav.classList.contains("active")) {
       nav.classList.remove("active");
-      document.getElementById("menuIcon").textContent = "☰";
+      icon.textContent = "☰";
     }
   });
+
   const profileImg = document.querySelector('.image-wrapper img');
   profileImg.onload = () => {
     profileImg.style.opacity = "1";
     animate = false;
     infernoCanvas.remove();
   };
+
   resizeGalaxy();
   drawGalaxy();
   drawInferno();
+
   function toggleMenu() {
     const nav = document.getElementById("mobileNav");
     const icon = document.getElementById("menuIcon");
     nav.classList.toggle("active");
     icon.textContent = nav.classList.contains("active") ? "✖" : "☰";
   }
+
+  // Close mobile menu on outside click
   document.addEventListener('click', function(e) {
     const nav = document.getElementById("mobileNav");
     const icon = document.getElementById("menuIcon");
@@ -623,6 +666,7 @@
       icon.textContent = "☰";
     }
   });
+
   // Glitch Text
   const glitchText = document.querySelector('.crazy-glitch');
   const titles = ["DESIGNER", "EDITOR", "DEVELOPER"];
