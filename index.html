@@ -129,20 +129,6 @@
       z-index: 1001;
     }
 
-    #menuIcon {
-      opacity: 1 !important;
-      z-index: 100000 !important;
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: none; /* Hidden by default (shown in mobile via media query) */
-    }
-
     nav {
       display: flex;
       gap: 2rem;
@@ -320,7 +306,13 @@
 
     @media (max-width: 768px) {
       nav { display: none; }
-      .menu-toggle { display: block; }
+      .menu-toggle { 
+        display: block;
+        z-index: 100000 !important; /* Add !important */
+        position: fixed; /* Ensure it stays fixed */
+        top: 1rem;
+        right: 1rem;
+       }
       .container {
         flex-direction: row;
         justify-content: space-between;
@@ -477,6 +469,7 @@
     <a href="soon/index.html">Contact</a>
   </nav>
 </div>
+<button class="menu-toggle" onclick="toggleMenu()" id="menuIcon">☰</button>
 <div class="mobile-nav" id="mobileNav">
   <a href="https://finixemperor69.github.io/cv/">Home</a>
   <a href="soon/index.html">About</a>
@@ -484,7 +477,6 @@
   <a href="soon/index.html">Service</a>
   <a href="soon/index.html">Contact</a>
 </div>
-<button class="menu-toggle" onclick="toggleMenu()" id="menuIcon">☰</button>
 <section class="hero">
   <div class="text-area">
     <div class="main-title2">Hey I'm <span class="highlight glitch-glow">PRABOD</span></div>
